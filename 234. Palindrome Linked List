@@ -1,0 +1,39 @@
+# Given the head of a singly linked list, return true if it is a palindrome.
+# Input: head = [1,2,2,1]
+# Output: true
+# Input: head = [1,2]
+# Output: false
+
+# The number of nodes in the list is in the range [1, 105].
+# 0 <= Node.val <= 9
+
+
+# LeetCode Setup and Solution
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+      
+    
+        dic = {}
+        p = 0
+   
+        dic[p] = head.val
+        while head.next != None:
+            p += 1
+            head = head.next
+            dic[p] = head.val
+            
+        for i in range(0, int(len(dic)/2)):
+            if dic[i] == dic[p]:
+                pass
+            else:
+                return False
+            p -= 1
+        return True
+            
+            
