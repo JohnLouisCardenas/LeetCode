@@ -1,0 +1,32 @@
+#https://leetcode.com/problems/reverse-words-in-a-string/
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        dic = {}
+        
+        word = ""
+        pos = 0
+        
+        for i in range(0,len(s)):       
+            letter = s[i]
+            
+            if (letter.isspace() == True) and (len(word) > 0):
+                dic[pos] = word
+                pos += 1
+                word = ""
+            
+            elif (i == len(s) -1) and (letter.isspace() == False):
+                word += letter
+                dic[pos] = word
+                word = ""           
+                
+            elif (s[i]) and (letter.isspace() == False):
+                word += letter
+                
+        for i in range(len(dic) - 1 ,-1,-1):
+            word += dic[i]
+            if i != 0:
+                word += " "
+                
+        return(word)
+    
