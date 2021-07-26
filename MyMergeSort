@@ -1,0 +1,69 @@
+def solution(a):
+ 
+    def Merge(left,right,a):
+        
+        l = 0
+        r = 0
+        i = 0
+        
+        #fill the arrays as long as l and r are not maxed
+        while l != len(left) and r != len(right):
+            if left[l] < right[r]:
+                a[i] = left[l]
+                l += 1
+                i += 1
+            else:
+                a[i] = right[r]
+                r += 1
+                i += 1
+        
+        #if any arrays are still unfilled , fill them
+        while l != len(left):
+            a[i] = left[l]
+            l += 1
+            i += 1
+        
+        while r != len(right):
+            a[i] = right[r]
+            r += 1
+            i += 1  
+ 
+    def MergeSort(a):
+        n = len(a)
+        #Calculate the len boundary
+        if (n < 2 ):
+            return(n)
+ 
+        #Calculate the Mid Index 
+        #Create Two Arrays, Left and Right
+ 
+        #if the lenght is not even
+        if len(a) % 2 != 0:
+            left = [None]* int(len(a)/2)
+            right = [None]* int(len(a)/2 + 1)
+        #if the length is even
+        else:
+ 
+            left = [None]*int(len(a)/2)
+            right = [None]*int(len(a)/2)
+ 
+        #fill right and left
+        pos = 0
+ 
+        for i in range(0,len(left)):
+            left[i] = a[pos]
+            pos += 1
+ 
+        for i in range(0,len(right)):
+            right[i] = a[pos]
+            pos += 1
+ 
+        MergeSort(left)
+        MergeSort(right)
+        Merge(left,right,a)
+ 
+    MergeSort(a)
+ 
+a = [2,4,1,6,8,5,3,7,8,1]
+solution(a)
+print(a)
